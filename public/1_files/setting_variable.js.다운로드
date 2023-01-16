@@ -1,0 +1,29 @@
+/**
+ *
+ * 최상단 설정 변수
+ *
+ */
+
+'use strict'
+
+let getIsApp = function () {
+
+  // WebView 접근 경로
+  let appPathArray = [
+    '/service/faq',
+    '/service/access-term',
+    '/service/policy',
+    '/service/third-policy',
+    '/service/third-party-order',
+    '/service/privacy-collect-use-policy',
+    '/service/privacy-sign-up',
+    '/service/privacy-date-of-birth',
+    '/service/business-information',
+    '/service/personal-consent',
+    '/service/personal-information-guidance',
+  ]
+
+  return appPathArray.indexOf(window.location.pathname) !== -1
+}
+
+window.isApp = getIsApp()

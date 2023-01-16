@@ -1,0 +1,3 @@
+/** 상품상세 옵션 셀렉트 박스 화살표 */
+.ui-selectmenu-button-closed.ui-button .ui-icon { background-image: url("../images/ic-arrow-bl-down@3x.png") !important; background-position: 0px center; background-size: 16px; }
+.ui-button .ui-icon { background-image: url("../images/ic-arrow-bl-up@3x.png") !important; background-position: 0px center; background-size: 16px; }

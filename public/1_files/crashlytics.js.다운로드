@@ -1,0 +1,203 @@
+window.crashlytics = {
+  logs : [],
+  getUser : function () {
+    let _getCookie = function (name) {
+      let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)')
+      return value ? value[2] : null
+    }
+    // 사용자 회원 정보
+    let hiverId = _getCookie('hiver_id')
+    hiverId = hiverId !== null ? hiverId : '비회원'
+    let hiverName = '' // _getCookie('hiver_name')
+    hiverName = hiverName !== null ? hiverName : '비회원'
+    // 사용자 브라우저 정보
+    let browserName;
+    let userAgent = navigator.userAgent;
+    let browserInfoArray
+
+    switch (true) {
+      case /Trident|MSIE/.test(userAgent):
+        browserName = 'ie'
+        break
+      case /Edge/.test(userAgent):
+        browserInfoArray = /Edge\/[.0-9]*/gm.exec(userAgent)
+        browserName = browserInfoArray instanceof Object ? browserInfoArray[0] : 'edge'
+        break
+      case /Chrome/.test(userAgent):
+        browserInfoArray = /Chrome\/[.0-9]*/gm.exec(userAgent)
+        browserName = browserInfoArray instanceof Object ? browserInfoArray[0] : 'chrome'
+        break
+      case /Safari/.test(userAgent):
+        browserInfoArray = /Safari\/[.0-9]*/gm.exec(userAgent)
+        browserName = browserInfoArray instanceof Object ? browserInfoArray[0] : 'safari'
+        break
+      case /Firefox/.test(userAgent):
+        browserInfoArray = /Firefox\/[.0-9]*/gm.exec(userAgent)
+        browserName = browserInfoArray instanceof Object ? browserInfoArray[0] : 'firefox'
+        break
+      case /Opera/.test(userAgent):
+        browserInfoArray = /Opera\/[.0-9]*/gm.exec(userAgent)
+        browserName = browserInfoArray instanceof Object ? browserInfoArray[0] : 'opera'
+        break
+      default:
+        browserName = 'unknown'
+    }
+    // 사용자 OS 정보
+    let userOsInfoArray = /\(([\w ;./@~?&=*-]*)\)/m.exec(userAgent)
+    let userOsInfo = (Array.isArray(userOsInfoArray) && userOsInfoArray.length > 1) ? userOsInfoArray[1] : 'unknown'
+    // 사용자 기기 정보 (Mobile, PC)
+    let pcFilter = "win16|win32|win64|mac|macintel"
+    let deviceInfo = (pcFilter.indexOf(navigator.platform.toLowerCase()) < 0) ? 'Mobile' : 'PC'
+    // 사용자 UUID 정보
+    let uuid = _getCookie('uuid')
+    uuid = (uuid !== null) ? uuid : 'undefined'
+    
+    return { id : hiverId, name : hiverName, os : userOsInfo, browser : browserName, device : deviceInfo, uuid : uuid }
+  },
+  getRequestInfo : function (error) {
+    let requestInfo = ['######### Request Info #########']
+    for (let key in error) {
+      if (error.hasOwnProperty(key) && ['timeout', 'headers', 'method', 'url', 'responseType'].indexOf(key) !== -1) {
+        requestInfo.push(key + ': ' + JSON.stringify(error[key]))
+      }
+    }
+    return requestInfo
+  },
+  getResponseInfo : function (error) {
+    let responseInfo = ['######### Response Info #########']
+    for (let key in error) {
+      if (error.hasOwnProperty(key) && ['data', 'headers', 'status'].indexOf(key) !== -1) {
+        responseInfo.push(key + ': ' + JSON.stringify(error[key]))
+      }
+    }
+    return responseInfo
+  },
+  getPayload : function (level, logType, code, message, url, trace, user, stack, data, httpMethod, httpCode) {
+    if (typeof stack === 'undefined') {
+      stack = []
+    }
+    if (typeof data === 'undefined') {
+      data = []
+    }
+    if (typeof httpMethod === 'undefined') {
+      httpMethod = ''
+    }
+    if (typeof httpCode === 'undefined') {
+      httpCode = null
+    }
+
+    let _zeroFill = function (val) {
+      if (val > 10) return val
+      let pad = new Array(3).join('0')
+      return (pad + val).slice(-pad.length)
+    }
+
+    // HTTP referrer
+    let referrer = window.document.referrer
+    referrer = (referrer == "") ? '첫 페이지 접근' : referrer
+    url = url + '\n(referer URL: ' + referrer + ')'
+
+    let payload = {
+      level : level,
+      type : logType,
+      code : code,
+      message : message,
+      url : url,
+      trace : trace,
+      user : user,
+    }
+
+    if (stack) {
+      if (typeof stack === 'string' && stack.length > 0) {
+        stack = new Array(stack)
+      }
+      if (Array.isArray(stack) && stack.length > 0) {
+        stack.map(function (s) {
+          return s.replace('    ', '')
+        })
+        payload['trace_stack'] = stack
+      }
+    }
+
+    if (Array.isArray(data) && data.length > 0) {
+      payload['data'] = data
+    } else if (typeof data === 'string' && data.length > 0) {
+      payload['data'] = new Array(data)
+    }
+    // WebView인 경우 localStorage 접근 제한
+    if (window.isApp !== true) {
+      // 로컬 스토리지
+      if (window.localStorage.length > 0) {
+        payload['local_storage'] = {}
+
+        let localStorage = window.localStorage
+        let key
+
+        for (var i=0; i < localStorage.length; i++) {
+          key = localStorage.key(i)
+          payload['local_storage'][key] = localStorage.getItem(key)
+        }
+      }
+    }
+    // 쿠키
+    if (window.document.cookie.length > 0) {
+      let cookieObject = {}
+      let cookie = window.document.cookie
+      let cookieArray = cookie.split('; ')
+      let key
+      let value
+
+      for (var i=0; i < cookieArray.length; i++) {
+        // "key=value" -> key 값 추출
+        key = cookieArray[i].split('=', 1)[0]
+        // "key=value" -> value 값 추출  (value에 = 값이 포함될 수 있으므로 split 이용하여 추출하지 않음)
+        value = cookieArray[i].substring(key.length+1)
+        cookieObject[key] = value
+      }
+      payload['cookie'] = cookieObject
+    }
+    httpMethod = httpMethod.toUpperCase()
+    if (['GET', 'POST', 'PUT', 'DELETE'].indexOf(httpMethod) !== -1) {
+      payload['http_method'] = httpMethod
+    }
+    if (httpCode !== null) {
+      payload['http_code'] = httpCode
+    }
+
+    let today = new Date()
+    payload['datetime'] = today.getFullYear()
+      + '-' + _zeroFill(today.getMonth() + 1)
+      + '-' + _zeroFill(today.getDate())
+      + ' ' + _zeroFill(today.getHours())
+      + ':' + _zeroFill(today.getMinutes())
+      + ':' + _zeroFill(today.getSeconds())
+
+    return payload
+  },
+  pushLog : function (payload) {
+    // window.crashlytics.logs.push(payload)
+  },
+}
+
+window.onerror = function (errorMessage, source, lineno, colno, errorObject) {
+  let user = this.crashlytics.getUser()
+  let stack = (errorObject instanceof Object) ? errorObject.stack : []
+
+  let payload = this.crashlytics.getPayload('ERROR', 'error-runtime', 'ERW0001', errorMessage, window.location.href, source, user, stack)
+  window.crashlytics.pushLog(payload)
+}
+
+window.addEventListener('unhandledrejection', function (event) {
+  let user = this.crashlytics.getUser()
+  let stack = []
+  let errorMessage = ''
+
+  // object 검사 및 데이터 할당
+  if (event instanceof Object && event.reason instanceof Object) {
+    stack = event.reason.hasOwnProperty('stack') ? event.reason.stack : []
+    errorMessage = event.reason.hasOwnProperty('message') ? event.reason.message : ''
+  }
+  
+  let payload = this.crashlytics.getPayload('ERROR', 'error-runtime', 'ERW0002', errorMessage, window.location.href, 'Window', user, stack)
+  window.crashlytics.pushLog(payload)
+})

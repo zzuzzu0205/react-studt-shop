@@ -1,0 +1,566 @@
+/* 기본 */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+input:focus {outline: none;}
+ul, li, dl, dt, dd {margin: 0px; padding: 0px; list-style: none}
+body {margin: 0px; padding: 0px; font-size: 13px; font-family: 'Noto Sans KR', sans-serif; word-break: keep-all}
+button, textarea {font-size: 13px; font-family: 'Noto Sans KR', sans-serif;}
+a:link {text-decoration: none}
+form {padding: 0px; margin: 0px}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 35px;
+    font-size: 1em;
+}
+
+input[type=checkbox]+ label:before {
+    content: "\2713";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    font-weight:800;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #efefef;
+    color:#d7d7d7;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 22px;
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+input[type=checkbox]:checked + label:before {
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    color: #fff;
+    background:#121212;
+}
+
+
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio] + label{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 13px;
+}
+
+input[type=radio]+ label:before {
+    content: "·";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #efefef;
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight:800;
+    text-align: center;
+    line-height: 24px;
+    color:#d7d7d7;
+}
+input[type=radio]:checked + label:before {
+    content: "·";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    color: #fff;
+    background:#121212;
+}
+
+
+
+/* 공통 */
+.gray {color:#888888}
+.popup_layer {background: #ffffff; border-top:5px solid #000; width: 98%; max-width: 400px; margin:auto auto; padding-bottom: 30px; display: none}
+.popup_layer h3 {font-size: 18px; padding:20px; border-bottom: 1px solid #ddd; margin-top: 0px}
+.popup_layer h3 span {cursor: pointer}
+.popup_layer h3 img {width: 18px; float: right}
+.pop_msg {font-size: 1.1em; padding: 30px 10px 10px 10px; line-height: 180%}
+.bkscreen {position: fixed; top:0px; left: 0px; width: 100%;  background:rgba(0,0,0,0.8) ;  display: none; vertical-align:bottom;}
+
+.frame {width:100%; max-width: 1300px; margin: 0px auto; clear: both; overflow: hidden}
+.frame_s {width:100%; max-width: 980px; margin: 0px auto; clear: both; padding:0px 30px; overflow: hidden}
+
+.pagetitle {text-align: center;padding: 40px 0px 20px 0px; clear: both}
+.pagetitle h1 {font-size: 2.2em; font-weight: normal; text-align: center; margin-bottom: 20px}
+.pagetitle h4, .pagetitle p {font-size: 1.1em; font-weight: normal; text-align: center; color:#6f6f6f; margin:0}
+.separator {width: 100%; border-bottom: 1px solid #000000; margin:40px 0px 20px 0px; clear: both; height:3px}
+.padtop40 {padding-top: 40px !important}
+.padtop50 {padding-top: 50px !important}
+.padtop60 {padding-top: 60px !important}
+.padtop70 {padding-top: 70px !important}
+.padv70 {padding-top: 70px !important; padding-bottom: 70px !important}
+.padv50 {padding-top: 50px !important; padding-bottom: 50px !important}
+.none {display: none}
+
+.center {text-align: center  !important}
+.left {text-align: left !important}
+.right {text-align: right  !important}
+
+/* 카테고리_left */
+.content_right {width: 80%;float: left ; overflow: hidden}
+
+/* 홈 */
+.list_head:after {clear:both;display:block;content:""}
+.list_chk {float: left; text-align: right; padding: 5px 1%; font-size: 1.1em}
+.list_chk .inpt,
+.list_chk .lbl {overflow: hidden; float: left; height: 35px; line-height: 35px}
+.list_chk .inpt {margin-right: 5px; cursor: pointer}
+.list_chk .lbl {margin-right: 20px}
+.list_chk_default {width:35px; background: #ffffff; border: 2px solid #e7e7e7; text-align: center;}
+.list_chk_checked {width:35px; background: #000000; border: 2px solid #000000; text-align: center;}
+
+.list_sort {float: right; text-align: right; padding: 5px 1%; color: #8d8d8d; font-size: 1.1em}
+.list_sort span {padding:5px 10px; cursor: pointer}
+.list_sort_default {color: #8d8d8d;}
+.list_sort_active {color: #000000;}
+
+/* 상세페이지 */
+.ui-selectmenu-button.ui-button {width: 100% !important; border-radius: 0px; border-color:#000000; color:#000000; padding:10px 20px; background: #ffffff; margin-bottom:10px}
+
+
+/* 주문 */
+.orderpage h2 {font-weight: 300; font-size: 2em; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 10px; margin-top:50px}
+.order_item { display: table; width:100%; }
+.order_item dl { width: 100%; display: table-row; }
+
+.order_item dd, .order_item dt {display: table-cell; vertical-align: middle; border-bottom: 1px solid #ccc; padding: 10px}
+.order_item dl dt {padding-bottom: 10px; font-size: 1.3em; font-weight: bold; text-align: center}
+.order_item .order-seller {overflow:hidden;display: block;width:120px;text-overflow: ellipsis;white-space: nowrap;}
+.order_item dl dt:first-child {text-align: left}
+.order_item dt img {width: 100%; max-width: 140px}
+.order_item dl dd {font-size: 1.25em}
+.order_item dl dd:first-child {width : 15%}
+.order_item dl dd:nth-child(3) {width : 20%; text-align: center}
+.order_item dl dd:nth-child(4) {width : 15%; text-align: center}
+.order_item dd:first-child img {width: 100%; max-width: 140px}
+
+.order_item dd span {color: #767676; font-weight: 300; font-size: 1em; display: block}
+.order_item .itemname {font-size: 1.3em; font-weight: 500; color:#000}
+
+.price_sum {text-align: right; font-size: 1.3em; padding: 10px 30px 30px 10px; border-bottom: 1px solid #000; color:#8d8d8d}
+.price_sum span {color:#000000; }
+.price_sum span.large {font-size: 1.2em; padding-left: 20px}
+.price_total {font-size: 1.7em; padding: 30px 30px 30px 10px; text-align: right; font-weight: 600}
+.price_total span {color: #d3a164}
+
+.order_member {border-bottom: 1px solid #000; overflow: hidden; font-size: 1.2em; margin-bottom: 50px}
+.order_member dd,
+.order_member dt {border-bottom: 1px solid #cccccc; padding: 15px;float:left}
+.order_member dt {width: 20%; font-weight: 700}
+.order_member dd {width: 80%}
+
+
+
+.orderpage h2 span {float: right; font-size: 0.7em}
+.order_delivery {border-bottom: 1px solid #000; overflow: hidden; font-size: 1.2em; margin-bottom: 50px; display: table; width: 100%}
+.order_delivery dl {display: table-row;}
+.order_delivery dt,
+.order_delivery dd {display: table-cell; padding:10px 15px;  border-bottom: 1px solid #ccc}
+.order_delivery dd {width: 80%}
+.order_delivery dt {width: 20%; font-weight: 700; vertical-align: middle}
+.w100per {width:100%}
+.w49per {width:49%}
+.w80px {width:80px}
+.w30per {width: 30%}
+.btn_in_orderforn {-webkit-appearance:none; margin: 3px; padding: 13px; border:0px; border-radius: 0; font-size: 0.85em; color:#fff; background: #4c4c4c;}
+.explain {font-size: 0.9em; padding: 0px 10px}
+.order_totalpay {border-bottom: 1px solid #000; overflow: hidden; font-size: 1.2em; margin-bottom: 50px; padding-bottom: 20px}
+.order_totalpay dt, .order_totalpay dd {float: left; width:50%; padding: 10px 20px}
+.order_totalpay dt {font-weight: bold}
+.order_totalpay dd  {text-align: right}
+.order_totalpay .large {font-size: 1.4em}
+.order_totalpay .red {color: #d60303; font-weight: bold}
+.order_totalpay .gold {color: #d3a164;}
+
+.order_paymethod {border-bottom: 1px solid #000; overflow: hidden; font-size: 1.2em; margin-bottom: 50px; padding: 15px 15px 28px 15px }
+.order_paymethod label {margin-right: 15px}
+.order_paymethod input[type=radio] {width: 20px; height:20px; vertical-align: -3px}
+
+.btn_order_order {padding: 25px ; width: 100%; max-width: 260px; text-align: center; margin:0px auto; display: block; background: #000000; color: #ffffff; font-size: 1.5em}
+.btn_order_order:hover {background:#ff4c42 }
+.orderpage input[type=text] {padding: 13px; background: #f5f5f5; color: #8d8d8d; border: none; font-size: 0.9em; margin:3px 0px}
+
+.orderpage h1 {text-align: center; font-size: 2.5em; font-weight: 400}
+.font2 {font-size: 1.8em; font-weight: 200}
+
+
+/* 카트 */
+.cart_item { display: table; width:100%; margin-bottom: 20px}
+.cart_item dl { width: 100%; display: table-row; }
+
+.cart_item dd, .cart_item dt {display: table-cell; vertical-align: middle; border-bottom: 1px solid #ccc; padding: 10px}
+.cart_item dl dt {padding-bottom: 10px; font-size: 1.3em; font-weight: bold; text-align: center}
+.cart_item .order-seller {overflow:hidden;display: block;width:150px;text-overflow: ellipsis;white-space: nowrap;}
+.cart_item dl dt:nth-child(2) {text-align: left}
+.cart_item dt img {width: 100%; max-width: 140px}
+.cart_item dl dd {font-size: 1.25em}
+.cart_item dl dd:first-child {width : 30px}
+.cart_item dl dd:nth-child(2) {width : 15%}
+.cart_item dl dd:nth-child(2) > a{display: inline-block;}
+.cart_item dl dd:nth-child(4) {width : 16%; text-align: center}
+.cart_item dl dd:nth-child(5) {width : 15%; text-align: center}
+.cart_item dd:nth-child(2) img {width: 100%; max-width: 140px}
+
+.cart_item dd span {color: #767676; font-weight: 300; font-size: 1em; display: block}
+.cart_item .itemname {font-size: 1.3em; font-weight: 500; color:#000}
+.cart_item .itemname input {margin-left: 10px !important}
+
+/* 주문/배송조회 */
+.btn_showdetailorder {float: right; color:#000000; font-size: 0.8em; font-weight: 400; }
+.btn_showdetailorder:hover {color: #ff4c42}
+.btns_orderinfo {text-align: right; overflow: hidden; padding-top: 20px; border-bottom: 1px solid #000000}
+.btn_orderinfo_1 {padding: 10px 25px; overflow: hidden; text-align: center; color: #000; border: 1px solid #ddd; display: inline-block; margin: 0px 5px 20px 0px; height: 42px}
+.btn_orderinfo_1:hover {color: #ff4c42; border-color: #ff4c42 }
+.btn_orderinfo_2 {padding: 5px 25px; overflow: hidden; text-align: center; color: #000; border: 1px solid #ddd; display: inline-block; margin: 0px 5px 20px 0px; height: 42px; line-height: 15px; color:#aaaaaa; font-size: 0.9em}
+.btn_orderinfo_3 {padding: 10px 25px; overflow: hidden; text-align: center; color: #ffffff; border: 1px solid #000000; display: inline-block; margin: 0px 5px 20px 0px; height: 42px; background: #000000}
+.btn_orderinfo_3:hover {background: #ff4c42; border-color: #ff4c42 }
+.btn_show_cancelorder, .btn_hide_cancelorder {padding: 0px 18px; overflow: hidden; text-align: center; color: #000000; border: 1px solid #000000; display: inline-block; margin: 10px 0px; height: 32px;line-height: 32px; font-size: 0.8em; background: #ffffff}
+.btn_hide_cancelorder {display: none}
+
+.order_cancel_info {border-bottom: 1px solid #000; overflow: hidden; font-size: 1.2em; background: #f5f5f5; display: none}
+.order_cancel_info dd,
+.order_cancel_info dt {padding: 15px 25px;float:left}
+.order_cancel_info dt {width: 20%; font-weight: 700}
+.order_cancel_info dd {width: 80%; text-align: right}
+
+
+
+.btn_orderinfo_cancel {font-size: 1.7em; padding: 30px 0px; text-align: center; font-weight: 600; }
+.btn_orderinfo_cancel a {background: #000000; padding: 15px 50px; display: inline-block; color: #ffffff}
+.btn_orderinfo_cancel a:hover {background: #ff4c42}
+.btn_orderinfo_review {padding: 5px 15px; overflow: hidden; text-align: center; color: #ffffff; border: 1px solid #000000; display: inline-block;height: 32px; background: #000000; font-size: 0.8em; display: block}
+
+.bank_select {padding: 13px; background: #f5f5f5; color: #8d8d8d; border: none; font-size: 0.9em; margin:3px 0px}
+.cancel_agree_box {padding:30px; border:1px solid #ccc; line-height:200%; margin-bottom: 30px}
+.cancel_agree_box b {font-size: 1.3em; vertical-align: 5px}
+.orderpage textarea {padding: 13px; background: #f5f5f5; color: #8d8d8d; border: none; font-size: 0.9em; margin:3px 0px; height:100px}
+.order_noresult {overflow: hidden; padding: 200px 0px; text-align: center; font-size: 1.em; color: #8d8d8d; font-weight: 300}
+
+/* mypage */
+
+.mypage_iconbox {display: block; padding: 40px 0; background: #F7F8F9; border-radius:8px; overflow: hidden;margin:0 20px;}
+.mypage_iconbox li {width:calc(100%/6); display: block;float: left; text-align: center; border-right:1px solid #E4E6E9;padding:3px 0 4px;line-height:1}
+.mypage_iconbox li:last-child {border-right:none}
+.mypage_iconbox li a {color: #7A7F86;display: block;}
+.mypage_iconbox li button {color: #7A7F86;background: none;border:0;cursor: pointer;padding:0;line-height: 1;}
+.mypage_iconbox li a:hover,
+.mypage_iconbox li button:hover {color: #ff4c42}
+
+.mypage_iconbox img {opacity: 0.4;}
+.mypage_iconbox li span {display:block;line-height: 24px;font-size: 16px;margin-top:4px;word-break:keep-all;}
+.mypage_iconbox li span img{vertical-align: -1px;opacity: 1;margin-left: 2px;}
+.mypage_iconbox li a b {color:#ff4c42}
+.mypage_iconbox .on {font-weight: 700; color:#000000}
+.mypage_iconbox .on img {opacity: 1}
+.mypage_iconbox_withdrawal{text-align: right; color: #b7bbbf; font-size:14px;margin-right:20px;}
+.mypage_iconbox_withdrawal > a {all: unset; letter-spacing:0; text-decoration: underline; cursor: pointer; color:#b7bbbf}
+
+.mypage_mobile_nav_table { display: none }
+@media screen and (max-width: 768px) {
+  .mypage_iconbox { display: none }
+  .mypage_mobile_nav_table { display: table }
+}
+
+.qna_filter {padding: 60px 0px 20px; text-align: right}
+.qna_filter label {font-size: 16px !important; padding-left : 30px !important ; margin-right: 0px !important; margin-left: 20px !important; }
+
+/* TODO: 포인트 등록 */
+.red {color : #ff4c42}
+
+.point_list { display: table; width:100%; }
+.point_list dl { width: 100%; display: table-row; }
+.point_list dd, .point_list dt {display: table-cell; vertical-align: middle; border-bottom: 1px solid #ccc; padding: 10px; text-align: center}
+.point_list dl dt {padding-bottom: 10px; font-size: 1.3em; font-weight: bold; }
+.point_list dl dd {font-size: 1.25em}
+.point_list dl dd:first-child {width : 20%}
+.point_list dl dd:nth-child(2) {text-align: left}
+.point_list dl dd:nth-child(3) {width : 15%;}
+
+/* 로그인 */
+.login_container {width: 100%; max-width: 600px; margin:10px auto; padding: 15px}
+.login_input {background:#ffffff; border:1px solid #bdbdbd ; width:100%; padding: 10px; margin:2px 0px}
+.login_btn {background:#000000; border:0px ; width:100%; padding: 10px; margin:10px 0px 2px 0px; color:#ffffff; display: block; text-align: center; border:1px solid #000000}
+.join_btn {background:#ffffff; border:1px solid #000000 ; width:100%; padding: 10px; margin:5px 0px 2px 0px; color:#000000; display: block; text-align: center}
+.login_btn:hover, .login_container .join_btn:hover {background: #ff4c42; border:1px solid #ff4c42; color: #ffffff; text-decoration: none}
+.login_find {text-align: right; padding: 15px 0px 25px 0px; color: #aaa; border-bottom: 1px solid #ccc}
+.login_find a {color: #666; padding: 0px 18px}
+.login_find a:last-child {padding-right: 0px}
+.login_find a:hover {color: #ff4c42}
+.login_container h3 {text-align: center; padding-top: 20px}
+.login_container .txt {text-align: center; color:#666; padding: 20px; border-bottom: 1px solid #999}
+.login_container .txt label {color:#000000; font-size: 14px; padding-left: 30px}
+.findid_btn {background:#000000; border:0px ; width:100%;max-width: 250px;  padding: 10px; margin:30px auto 2px auto; color:#ffffff; display: block; text-align: center; border:1px solid #000000; border-radius: 5px}
+.findid_btn:hover {background: #ff4c42; border:1px solid #ff4c42; color: #ffffff; text-decoration: none}
+.findid_id_input {background:#ffffff; border:1px solid #bdbdbd ; width:100%; padding: 10px; margin:5px 0px; border-radius: 5px; height: 40px}
+.findid_hp_input {background:#ffffff; border:1px solid #bdbdbd ; width:calc(100% - 105px); padding: 10px; margin:5px 0px; border-radius: 5px; height: 40px}
+.findid_hp_btn {width:100px;background:#ffffff; border:1px solid #000000 ; padding: 10px; margin:5px 0px; border-radius: 5px; color:#000000; vertical-align: bottom}
+.findid_txt {padding: 10px 0px; color: #4c4c4c}
+.findid_txtbox {border-top:1px solid #dfdfdf; border-bottom: 1px solid #dfdfdf; padding-bottom: 15px; margin: 40px 0px 20px 0px; color: #4c4c4c; font-size: 0.95em}
+.findid_txtbox h2 {font-size: 1.2em}
+.show_myid {font-weight: 700; text-decoration: underline; font-size: 1.7em; color:#000000; padding: 30px 0px 10px 0px}
+.btns_findid {text-align: center}
+.btns_findid_a {display: inline-block; background:#000000; border:1px solid #000000 ; width:45%;max-width: 150px;  padding: 10px; margin:30px auto 2px auto; color:#ffffff; text-align: center; border-radius: 5px}
+.btns_findid_b {display: inline-block; background:#ffffff; border:1px solid #000000 ; width:45%;max-width: 150px;  padding: 10px; margin:30px auto 2px auto; color:#000000; text-align: center; border-radius: 5px}
+.btns_findid_c {display: inline-block; background:#a1a1a1; border:1px solid #a1a1a1 ; width:45%;max-width: 150px;  padding: 10px; margin:30px auto 2px auto; color:#ffffff; text-align: center; border-radius: 5px}
+.btns_findid_a:hover ,.btns_findid_b:hover,.btns_findid_c:hover {background: #ff4c42; border:1px solid #ff4c42; color: #ffffff; text-decoration: none}
+.findid_line {border-bottom: 1px solid #dfdfdf;margin-top:20px}
+
+
+/*회원가입 */
+.join_steps {border-top:1px solid #000000; border-bottom:1px solid #000000; text-align: center; padding-bottom: -2px; height: 103px; overflow: hidden}
+.join_step {width:23%; max-width: 180px; overflow: hidden; color:#a1a1a1; padding: 15px 0px; display: inline-block; margin-bottom: 0px}
+.join_step img {width:65px; opacity: 0.5; }
+.join_step.on {border-right:1px solid #000000; border-left:1px solid #000000;  color:#000000;}
+.join_step.on img {opacity: 1;}
+.certification_ul {width: 100%; max-width: 300px; text-align: left; margin:0px auto}
+.agree_more {float: right; color: #000000}
+.agree_txt {background: #f1f1f1; padding: 15px; font-size: 12px; border:1px solid #ddd;width:100%; height:200px}
+.findid_id_input_2 {background:#ffffff; border:1px solid #bdbdbd ; width:100%; padding: 10px; margin:0px; border-radius: 5px 5px 0px 0px; height: 40px}
+.findid_id_input_3 {background:#ffffff; border:1px solid #bdbdbd ; width:100%; padding: 10px; margin-bottom:5px; border-radius: 0px 0px 5px 5px; height: 40px; border-top: 0px}
+
+/* 리뷰_상세 */
+.pagetitle h1 img {width: 40px; height: 40px; border-radius: 100%; margin-right: 10px; vertical-align: -10px}
+.review_detail_infos {border-top:1px solid #000;  }
+.review_detail_rating {width: 100%; border:0px}
+.review_detail_fit {width: 100%; border:0px; border-top:1px solid #cccccc}
+.review_view_firstinput {padding: 10px 20px; background: #f9f9f9; overflow: hidden}
+.review_view_firstinput dl {width: 25%; margin: 0px}
+.review_detail_text {padding: 20px; margin-top: 20px; border-top:1px solid #000000; font-size: 1.1em; line-height: 190%}
+.review_detail_text span {display: block; font-size: 1.3em; padding-bottom:10px}
+.review_detail_icons {padding: 0px 20px; line-height:20px}
+.review_detail_icons img {width:20px;  }
+.review_detail_icons a {color:#000000; text-decoration: none}
+.review_detail_icons span {padding:0px 20px 0px 5px}
+.review_detail_msg_container {border-top:1px solid #cccccc; margin-top:30px; padding:20px}
+.review_detail_msg_container dl {clear: both; overflow: hidden; padding-top:13px; padding-bottom:13px}
+.review_detail_msg_container dl dt { font-size:1.2em; float:left; width:200px; }
+.review_detail_msg_container dl dd { font-size:1.1em; padding-top:3px; float:left}
+.review_detail_msg_container .btn_review_reply {margin-left:200px; display: block; color:#999999; padding-top: 5px; cursor:pointer; clear: both; max-width: 150px}
+.review_detail_msg_container dl dd:first-child {float:right; color: #777777; font-size: 1em}
+.review_detail_msg_container dl dt img {width: 30px; height: 30px; border-radius: 100%; vertical-align: -8px; margin-right: 8px}
+.review_detail_reply { margin-left:40px; border-top:1px dotted #d9d9d9}
+.review_detail_msg {border-top: 1px solid #dddddd}
+.review_detail_msg:first-child {border-top: 0px}
+.review_related {border-top: 1px solid #000000; padding: 20px}
+.review_related h4 {display: block; font-size: 1.3em}
+.review_related  a img {width: 200px; }
+.review_write_reply {clear: both; padding-left: 200px; padding-top:20px; display: none}
+.review_write_reply textarea {width:85%; border:1px solid #ddd; padding:15px;height: 100px; vertical-align: bottom}
+.review_write_reply input[type=button] {height:100px; width:14%; vertical-align: bottom; border:1px solid #000000; background:#000000; color:#ffffff}
+.review_detail_msg_reply { text-align: center}
+.review_detail_msg_reply textarea {width:80%; border:1px solid #ddd; padding:15px;height: 100px; vertical-align: bottom}
+.review_detail_msg_reply input[type=button] {height:100px; width:14%; vertical-align: bottom; border:1px solid #000000; background:#000000; color:#ffffff}
+
+/* 리뷰 목록 */
+.review_list_tab { overflow: hidden}
+.review_list_tab  a {display:block; text-align:  center ; padding: 10px 0px; width: 50%; border:1px solid #f3f3f3; float:left; cursor:pointer; color:#777; background: #f3f3f3; border-bottom: 1px solid #000000}
+.review_list_tab  a.on {border:1px solid #000000; border-bottom: 1px solid #ffffff; color:#000000; background: #ffffff}
+.review_list {border-top: 0px !important}
+
+/* 마이페이지 수정 및 추가 */
+.myshopping_container {border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; overflow: hidden; text-align: center}
+.myshopping_container li {width: 50%; float: left; padding: 20px; line-height: 50px; font-size: 1.2em; border-top:1px solid #ccc; border-left: 1px solid #ccc }
+.myshopping_container li img {width: 50px; vertical-align: -35%}
+.myshopping_container li a {color: #777777}
+.myshopping_container .on {font-weight: bold; color: #000000}
+
+/* 마이 리뷰 */
+.noborder {border:0px !important}
+.review_point {color:#ff4c42; float: left; font-size: 1.1em}
+.review_point span {display: block; font-size: 0.8em}
+.reviewer_info_first {padding-left:0px !important}
+
+/* 쇼핑&마켓, 브랜드 */
+.pagetitle .type2 {text-align: left; margin-bottom: 0px; font-size: 1.8em}
+.pagetitle .type2 a {font-size: 0.65em; float: right; color:#888888;padding-top:10px; padding-right: 15px}
+.pagetitle .type2 div {font-size: 0.65em ; color:#787878}
+.divide {margin-top:40px; border-top:1px solid #efefef; margin-bottom: 30px}
+
+/* 리뷰작성 */
+.review_write_wrap {width:100%; display:table; margin-top:40px}
+.review_write_btns {text-align: center; border-bottom: 0px !important ;  padding-top:30px !important; margin-top: 30px}
+.review_write_btns a {padding:10px 50px ; margin: 30px 5px}
+.review_write_item {width: 50%; padding: 30px; display: table-cell; border: 1px solid #efefef}
+.review_write_container {display:table-row; width:100%; }
+blockquote {margin:0px; color:#aaaaaa; font-style: italic; display: inline; padding: 5px; padding-left:15px}
+.review_write_question {font-size: 1.3em; padding-bottom: 10px}
+.review_write_height {width:80px}
+.review_write_answer label {font-size:1.1em !important;padding: 5px 0px 5px 30px !important; margin-right: 10px}
+.rating {font-size:2.5em; color:#ffc000}
+.review_write_firstinput {width:100%; font-size: 1.2em}
+.review_write_firstinput dl {width:16.666%; display: inline-block; float: left; text-align: center; margin:50px auto}
+.review_write_firstinput dl dt {border-bottom: 1px solid #cccccc; padding: 10px; height:40px}
+.review_write_firstinput dl dd {color:#909090; padding: 10px}
+.review_write_answer textarea {width:100%; height:150px}
+.review_write_answer input[type=file] { display: none; width:30%; margin-right: 1.5%; margin-bottom: 10px; height: 35px; margin-left :-31%; background: #efefef; }
+.review_write_answer button  { width:31%; margin-right: 1.5%;  height: 35px;   background:#000000; color: #fff;  cursor: pointer; border:0px; }
+.review_write_answer div img {width: 31%; margin-right: 1.5%}
+.rating_result {color:#ffc000}
+
+@media screen and (max-width:768px) {
+  input[type=checkbox]+ label:before {
+  width: 20px;
+  height: 20px;
+  font-size: 15px;
+  margin-right: 3px;
+  bottom: 1px;
+  }
+
+
+  /* 리뷰 관련 추가 */
+  blockquote {display: block; padding-left:0px}
+  .review_write_item {display: block; width: 100%; padding:15px}
+  .review_write_answer label {font-size:1.2em !important;padding: 5px 10px 0px 20px !important; margin-right: 10px}
+  .review_write_answer input[type=radio]+ label:before {bottom:3px !important}
+  .review_write_firstinput dl {width:33%; margin:10px auto}
+  .review_write_firstinput {overflow: hidden; margin:50px auto}
+  .review_view_fit, .review_view_rating, .review_view_rating span {font-size: 1.1em}
+  .review_view_reviewer {padding: 10px 0px}
+  .review_detail_photos {width: 100%; max-width: 100%; height: 100%}
+  .container_review_detail .order_item dl dd:nth-child(3) {display: none}
+  .review_detail_rating {margin-top: 0px}
+  .review_view_firstinput {margin-top: 0px; padding:5px; font-size: 1em}
+  .review_view_firstinput dl {width: 25%}
+  .review_view_firstinput dl dt {padding: 5px 0px; height: 30px}
+  .review_view_firstinput dl dd {padding: 5px 0px}
+  .review_detail_msg_container .btn_review_reply {margin-left: 0px}
+  .review_write_reply {padding-left: 0px}
+  .review_write_reply textarea {width: 70%; height: 80px}
+  .review_write_reply input[type=button] {width: 27%; height: 80px}
+  .review_detail_msg_reply textarea {width: 70%; height: 80px}
+  .review_detail_msg_reply input[type=button] {width: 27%; height: 80px}
+  .review_related a img {max-width: 30%}
+
+  /* 마이페이지 수정 및 추가 */
+  .mypage_iconbox {padding: 10px !important}
+  .mypage_iconbox li {width: 100% !important; border-right: 0px !important; border-bottom:1px solid #ccc; padding-bottom:15px; margin-top: 0px !important}
+  .myshopping_container li {padding: 0px 30px; text-align: left; font-size: 1.1em; width: 100%; float: none}
+  .myshopping_container li img {width: 35px; vertical-align: -20%}
+
+
+  /* 쇼핑&마켓, 브랜드 */
+  .order_member {font-size: 0.8em}
+  .order_member dt {width: 30%}
+  .order_member dd {width: 70%}
+
+  .point_list dl dd, .point_list dl dt{font-size: 12px !important}
+
+  input[type=checkbox] + label {padding-left:25px}
+
+  body {font-size: 12px}
+  .frame {padding:0px 20px}
+  .pagetitle {text-align: center;padding: 20px 0px 10px 0px; clear: both}
+  .pagetitle h1 {font-size: 2.2em; font-weight: normal; text-align: center; margin-bottom: 8px}
+  .pagetitle h4, .pagetitle p {font-size: 1.1em; font-weight: normal; text-align: center; color:#6f6f6f;}
+  .content_right {width: 100%}
+  .list_sort {font-size: 1em; padding: 2px 0px; letter-spacing: -0.05em}
+  .list_sort span {padding: 3px 4px; border:0px; color:#8d8d8d}
+  .list_sort span:first-child {padding-left:0px}
+  .list_sort span:last-child {padding-right:0px}
+  .list_chk_default {width: 25px; height:25px !important; line-height: 25px !important; border-width: 1px; }
+  .list_chk_default img {width: 16px}
+  .list_chk {line-height: 25px}
+  .list_chk .lbl {height:23px; line-height: 23px}
+  .list_sort {color:#ffffff}
+  .padtop40 {padding-top: 20px !important}
+
+  .orderpage h2 {font-size: 1.3em; margin-top: 30px; overflow: hidden}
+
+  /* cart */
+  .cart_item {display: block; margin-bottom: 10px}
+  .cart_item dl {display: block; clear: both; border-bottom: 1px solid #ccc; overflow: hidden}
+  .cart_item dl dt {display: none}
+  .cart_item .order-seller {width: auto;}
+  .cart_item dl dt:nth-child(2) {display:block}
+  .cart_item dl dd {display: block; width: 100%; border:0px}
+  .cart_item .itemname {font-size: 1em}
+  .cart_item dl dd:first-child {width : 20px; display: none}
+  .cart_item dl dd:nth-child(2) {width : 25%; float: left}
+  .cart_item dl dd:nth-child(3) {width : 75%; float: left}
+  .cart_item dl dd:nth-child(4) {width : 50%; text-align: left; float:left; clear: both}
+  .cart_item dl dd:nth-child(5) {width : 50%; text-align: right;float:left}
+  .cart_item dd:nth-child(2) img {width: 100%; max-width: 140px}
+
+  .order_item {display: block; margin-bottom: 10px}
+  .order_item dl {display: block; clear: both; border-bottom: 1px solid #ccc; overflow: hidden}
+  .order_item dl dt {display: none}
+  .order_item .order-seller {width: auto;}
+  .order_item dl dt:nth-child(1) {display:block}
+  .order_item dl dd {display: block; width: 100%; border:0px}
+  .order_item .itemname {font-size: 1em}
+
+  .order_item dl dd:nth-child(1) {width : 25%; float: left}
+  .order_item dl dd:nth-child(2) {width : 75%; float: left}
+  .order_item dl dd:nth-child(3) {width : 50%; text-align: left; float:left; clear: both}
+  .order_item dl dd:nth-child(4) {width : 50%; text-align: right;float:left}
+  .order_item dd:nth-child(1) img {width: 100%; max-width: 140px}
+
+  .btn_del_s {width: 20px; height: 20px; line-height: 20px}
+  .price_sum {clear: both; overflow: hidden; padding: 0px 10px 30px 0px}
+  .cart_item dd span {display: inline}
+  .price_sum span.large {font-size: 1em}
+  .cart_item .itemname input {margin-left: 5px !important}
+  .price_total {padding: 20px 10px; font-size: 1.4em}
+  .order_totalpay .large {font-size: 1.2em}
+  .order_totalpay dt, .order_totalpay dd {padding: 10px}
+  .ui-selectmenu-button.ui-button {padding: 5px; font-size: 1em}
+
+  .w80px {width:60px}
+  .explain {display: block; padding:10px 0px}
+  .order_addr {width:100%}
+
+  input[type=radio]+ label:before {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  background-color: #efefef;
+  border-radius: 15px;
+  font-size: 20px;
+  line-height: 13px;
+  }
+  input[type=radio] + label{
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 20px;
+  margin-right: 10px;
+  font-size: 13px;
+  }
+  .btn_order_order {padding: 15px 0px}
+  .btn_orderinfo_1 {padding:10px 15px}
+  .btn_orderinfo_2 {padding: 5px 15px}
+  .btn_orderinfo_3 {padding: 10px 15px}
+  .btn_orderinfo_review {position:absolute; right: 20px; margin-top:20px}
+  .order_member dd, .order_member dt {padding: 10px 5px ; word-break: break-all}
+  .order_member dd:last-child {border: 0px}
+  .order_member dt:nth-last-child(2){border: 0px}
+  .mypage_iconbox {text-align: center; font-size: 12px}
+  .mypage_iconbox li {width:32%; display: inline-block; float: none; border-right: 1px solid #ccc; margin:10px 0px}
+  .mypage_iconbox li:nth-child(3) {border: 0px}
+}

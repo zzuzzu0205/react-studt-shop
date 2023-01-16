@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15">
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g transform="translate(-1518 -128) translate(0 110) translate(1518 18.5)">
+                    <rect width="22" height="14" fill="#666" rx="7"/>
+                    <text fill="#FFF" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-size="8" font-weight="bold">
+                        <tspan x="3.24" y="10">OFF</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

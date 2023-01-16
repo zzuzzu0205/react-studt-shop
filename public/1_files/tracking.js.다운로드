@@ -1,0 +1,166 @@
+var happytalk = (function() {
+
+  function WebChatting() {
+    this.host = window.__ht_wc.host;
+    this.siteId = window.__ht_wc.site_id;
+    this.siteName = window.__ht_wc.site_name;
+    this.categoryId = window.__ht_wc.category_id;
+    this.divisionId = window.__ht_wc.division_id;
+    this.params = window.__ht_wc.params || '';
+    this.partnerId = window.__ht_wc.partner_id;
+    this.shopId = window.__ht_wc.shop_id;
+    this.iframe = null;
+    this.protocol = 'https:' == document.location.protocol ? 'https://' : 'http://';
+    this.shadowSize = 20; // box-shadow 처리를 위한 변수값
+    this.halfShadowSize = this.shadowSize / 2;
+  }
+
+  WebChatting.prototype = {
+    createIframe: function(extraParams) {
+      var url = this.protocol + this.host + '/chatting';
+      var src = url + 
+        '?siteId=' + this.siteId + 
+        '&categoryId=' + this.categoryId +
+        '&divisionId=' + this.divisionId +
+        '&siteName=' + encodeURI(this.siteName) +
+        '&params=' + encodeURI(this.params) + (extraParams ? extraParams : '') +
+        '&partnerId=' + (this.partnerId ? this.partnerId : '') +
+        '&shopId=' + (this.shopId ? this.shopId : '');
+      
+      this.iframe = document.createElement('iframe');
+      this.iframe.id = 'HappytalkIframe';
+      this.iframe.src = src;
+
+      this.iframe.setAttribute('allowtransparency', 'true');
+      this.iframe.setAttribute('frameborder', '0');
+      this.iframe.setAttribute('title', '채팅상담');
+      this.iframe.setAttribute('tabindex', '0');
+      
+      this.iframe.style.margin = '0px';
+      this.iframe.style.zIndex = '999999999';
+
+      document.body.appendChild(this.iframe);
+      
+      return this.iframe;
+    },
+    setButtonInfo: function(data) {
+      this.iframe.style.position = 'fixed';
+      this.iframe.style.left = data.position === 'left' ? (data.left - this.halfShadowSize) + 'px' : 'auto'; 
+      this.iframe.style.right = data.position === 'right' ? (data.right - this.halfShadowSize) + 'px' : 'auto';
+      this.iframe.style.bottom = (data.bottom - this.halfShadowSize) + 'px';
+      this.iframe.style.width = (data.size + this.shadowSize) + 'px';
+      this.iframe.style.height = data.chatButtonsHeight ? (data.chatButtonsHeight + this.shadowSize) + 'px' : '0px';
+    },
+    setChatWindow: function(data) {
+      var device = data.device;
+      var chatWindowBottom = data.size + 10;
+      
+      if (device === 'pc') {
+        this.iframe.style.width = (data.width + this.shadowSize) + 'px';
+        this.iframe.style.height = (data.height + chatWindowBottom + this.shadowSize) + 'px';
+      }
+
+      if (device === 'mobile') {
+        this.iframe.style.left = 0;
+        this.iframe.style.right = 0;
+        this.iframe.style.bottom = 0;
+        this.iframe.style.width = '100%';
+        this.iframe.style.height = '100%';
+      }
+    },
+    callback: function(type) {
+      var cb = window.__ht_wc.callback;
+      if (typeof cb === 'function') {
+        cb(type);
+      }
+    },
+    receiveMessage: function(e) {
+      if (e.data.type === 'SET_BUTTON_INFO') {
+        this.setButtonInfo(e.data.value);
+        this.iframe.contentWindow.postMessage({ type: 'WINDOW_SIZE', value: { windowWidth: window.innerWidth, windowHeight: window.innerHeight } }, '*');
+      }
+      if (e.data.type === 'SET_CHAT_WINDOW') {
+        this.setChatWindow(e.data.value);
+        this.callback('happytalk_button:open');
+      }
+      if (e.data.type === 'UNSET_CHAT_WINDOW') {
+        this.callback('happytalk_button:close');
+      }
+      if (e.data.type === 'COMPLETE_BUTTON_LOAD') {
+        this.htButtonLoaded = true;
+        this.callback('happytalk_button:ready');
+      }
+      if (e.data.type === 'CREATE_CHAT_ROOM') {
+        this.callback('happytalk:createChatRoom');
+        this.iframe.contentWindow.postMessage({ type: 'READY_CHAT_ROOM' }, '*');
+      }
+      if (e.data.type === 'CHANGE_PARAMS') {
+        this.callback('happytalk_params:change');
+      }
+      if (e.data.type === 'OPEN_HAPPYTALK_CHANNEL') {
+        this.callback('happytalk_channel:open');
+      }
+      if (e.data.type === 'OPEN_KAKAOTALK_CHANNEL') {
+        this.callback('kakaotalk_channel:open');
+      }
+      if (e.data.type === 'OPEN_NAVERTALK_CHANNEL') {
+        this.callback('navertalk_channel:open');
+      }
+    },
+    htButtonLoaded: false
+  };
+
+  var webChatting = new WebChatting();
+  var happytalkIframe = null;
+
+  // 에외 처리
+  if (window.__ht_wc.site_id === '') {
+    console.log('site_id is not found.');
+    return;
+  }
+
+  // 카페 24 에외처리 (cn한테 여쭤볼 것.)
+  if (window.__ht_wc.partner_id === '2') {
+    try {
+      window.CAFE24API.getMemberID(function(mid){
+        var extraParams = ( mid != null && typeof mid == 'string') ? ',site_uid='+ encodeURI(mid) : null;
+        happytalkIframe = webChatting.createIframe(extraParams);
+      });
+    } catch (error) {
+      happytalkIframe = webChatting.createIframe();
+    }
+  } else {
+    // 일반
+    happytalkIframe = webChatting.createIframe();
+  }
+
+  window.addEventListener('message', webChatting.receiveMessage.bind(webChatting));
+  
+  return {
+    open: function() {
+      if (!happytalkIframe) return;
+      happytalkIframe.contentWindow.postMessage({ type: 'OPEN_CHAT_WINDOW' }, '*');
+    },
+    close: function() {
+      if (!happytalkIframe) return;
+      happytalkIframe.contentWindow.postMessage({ type: 'CLOSE_CHAT_WINDOW' }, '*');
+      webChatting.callback('happytalk_button:close');
+    },
+    linkToKakao: function() {
+      if (!happytalkIframe) return;
+      happytalkIframe.contentWindow.postMessage({ type: 'LINK_TO_KAKAO' }, '*');
+    },
+    linkToNaver: function() {
+      if (!happytalkIframe) return;
+      happytalkIframe.contentWindow.postMessage({ type: 'LINK_TO_NAVER' }, '*');
+    },
+    setParams: function(params) {
+      if (!happytalkIframe) return;
+      happytalkIframe.contentWindow.postMessage({ type: 'SET_PARAMS', value: params }, '*');
+    },
+    isButtonLoaded: function() {
+      if (!happytalkIframe) return false;
+      return webChatting.htButtonLoaded;
+    }
+  }
+})();

@@ -1,0 +1,687 @@
+@font-face {
+  font-display: fallback;
+  font-family: Roboto-Regular;
+  src: url('../fonts/Roboto-Regular.ttf') format('opentype');
+}
+
+/** 읽기 전용 */
+[readonly] {
+  background: #f1f1f1;
+}
+
+.break-all { word-break: break-all; }
+
+/** 공통 버튼 */
+.reg_btn {
+  background: #000000;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  border: 1px solid #000000;
+  width: 170px;
+  height: 50px;
+  padding: 0;
+  border-radius: 4px;
+  font-size: 17px;
+  line-height: 46px;
+}
+@media screen and (max-width: 768px) {
+  .reg_btn {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    max-width: 100%;
+    margin: 0;
+    font-size: 15px;
+  }
+}
+
+/** 메인 */
+.pagetitle .type2 {text-align: left; margin-bottom: 0; font-size: 1.8em}
+.pagetitle .type2 a {font-size: 0.65em; float: right; color:#888888;padding-top:10px; padding-right: 15px}
+.divide {margin-top:40px; border-top:1px solid #efefef; margin-bottom: 30px}
+
+/** 포인트 컬러 */
+.point_color_txt { color: #ff4c42; }
+
+/** 테이블 CSS 초기화 - 스토어 CS센터에 별다른 영향 없어서 전역 추가 */
+table {padding:0; border-spacing:0px; border:0; border-collapse:collapse;}
+tr, td { padding: 0;}
+
+/** x 버튼 */
+.btDel, .btDel:active { color:#000; }
+
+/** 정렬 설정 */
+.align_left { text-align: left !important; }
+.align_center { text-align: center !important; }
+.align_right { text-align: right !important; }
+
+/** 정렬 필터 */
+.list_sort_active { font-weight: bold; }
+.list_sort_m {display: none}
+@media screen and (max-width: 768px) {
+  .list_sort_container { display: inline-block; float: right}
+  .list_head { margin-bottom: 10px }
+  .list_sort {display: none}
+  .list_sort_m {display: block; width: 100px }
+  .ui-selectmenu-button.ui-button { margin-bottom: 0 }
+}
+
+/** 트래지션 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+/** 상품 상세 > Q&A 목록 */
+.qna_list li { cursor: default }
+.qna_list li span.qna_list_title { cursor: pointer; }
+
+/** 노데이터 처리 */
+.qna_no_data, .review_no_data, .highend_no_data, .event_no_data, .cart_no_data { text-align: center; padding: 10px 0; font-size: 1.25em; }
+.mypage_order_no_data { text-align: center; padding: 50px 0 50px 0; font-size: 1.25em; }
+.new_no_data { text-align: center; padding: 50px 0 40px 0; font-size: 1.25em; }
+.cart_no_data { padding: 150px 0; }
+
+/** 마이페이지 모바일용 신규 네비게이션 CSS 추가 */
+.mypage_mobile_nav_table {
+    width: 100%;
+}
+.mypage_mobile_nav_table td {
+    width:25%;
+    padding: 20px 0;
+    border: 1px solid #000000;
+    text-align: center;
+    vertical-align: middle;
+}
+.mypage_mobile_nav_table tr td:first-child { border-left: 0; }
+.mypage_mobile_nav_table tr td:last-child { border-right: 0; }
+.mypage_mobile_nav_table td a {display:block; color: #7d7d7d; line-height: 1;}
+.mypage_mobile_nav_table td button{background: none;cursor:pointer;display: inline-block;border:0; color: #7d7d7d; line-height: 1;padding:0;} 
+.mypage_mobile_nav_table td a b {color:#ff4c42}
+.mypage_mobile_nav_table td img.mypage_nav_icon {opacity: 0.5;}
+.mypage_mobile_nav_table td .on {font-weight: 700; color:#000000}
+.mypage_mobile_nav_table td .on img.mypage_nav_icon {opacity: 1}
+
+@media screen and (max-width: 768px) {
+  .mypage_mobile_nav_table td img.mypage_nav_icon {width: 32px}
+  .mypage_mobile_nav_table td span {display:block; line-height: 16px; font-size:12px; margin-top: 4px; letter-spacing: -1px;}
+}
+
+/** 마이페이지 > 에스크로 인증 번호 확인 박스 */
+.escrowAuthBox { border-bottom: solid 1px #ccc; text-align: right; padding: 10px 0; display: none; }
+.escrowAuthBox.show { display: block; }
+.escrowAuthBox > span { margin-right: 10px; }
+.escrowAuthBox > input, .escrowRefund > input { width: 75px; text-align: center; }
+.escrowAuthBox > a { line-height: 14px; text-align: center; display: block; height: 40px; width: 70px; float: right; padding: 13px; color: #000;
+    background: #fff; border: solid 1px #ddd; display: inline-block; font-size: 13px; margin: 3px 0px; margin-left: 10px; }
+.escrowAuthBox > a.b { margin-left: 5px; }
+.escrowRefund > span { margin-left: 10px; font-size:13px; }
+
+/** 마이페이지 주문/배송조회 버튼 사이즈 및 margin 줄이기 */
+.btns_orderinfo {padding:0; border-bottom: 1px solid #cccccc}
+.btns_orderinfo .btn_orderinfo_1 {margin: 10px 5px 10px 0px}
+.btns_orderinfo .btn_orderinfo_2 {margin: 10px 5px 10px 0px}
+.btns_orderinfo .btn_orderinfo_3 {margin: 10px 5px 10px 0px}
+.btns_orderinfo .btn_orderinfo_3.cancel_disabled {padding: 3px 25px;}
+.btns_orderinfo .btn_orderinfo_3 .date {display:block;font-size: 10px;}
+@media screen and (max-width: 768px) {
+  .btn_orderinfo_1 {padding: 8px 12px; margin: 0px 5px 10px 0px}
+  .btn_orderinfo_2 {padding: 5px 12px; margin: 0px 5px 10px 0px; float: right; }
+  .btn_orderinfo_3 {padding: 8px 12px; margin: 0px 5px 10px 0px}
+  .btns_orderinfo .btn_orderinfo_3.cancel_disabled {padding: 3px 12px;}
+}
+
+/** 마이페이지 주문/배송조회 버튼 언더라인 Gray 처리 */
+.btns_orderinfo_gray {text-align: right; overflow: hidden; padding-top: 20px; border-bottom: 1px solid #cccccc}
+
+/** 마이페이지 주문 그룹취소 버튼 */
+.btn_orderinfo_cancel {font-size: 1.5em; font-weight: lighter; padding: 12px 0px; text-align: center; }
+.btn_orderinfo_cancel a {background: #000000; padding: 15px 50px; display: inline-block; color: #ffffff; }
+@media screen and (max-width: 768px) {
+  .btn_orderinfo_cancel a { font-weight: normal; font-size: 14px; background: #000000; padding: 10px 20px; display: inline-block; color: #ffffff}
+}
+
+/** 마이페이지 주문/배송조회 항목별 margin */
+.mypage_order_item_wrap:first-child { margin-top: 100px }
+.mypage_order_item_wrap { margin-bottom: 60px;padding:0 20px;}
+@media screen and (max-width: 768px) {
+  .mypage_order_item_wrap:first-child {
+    margin-top: 60px;
+  }
+  .mypage_order_item_wrap {padding:0}
+}
+/** 마이페이지 > Q&A */
+.myqna_list { border: none; }
+
+/** 마이페이지 하단 버튼 크기 변경 */
+.btn_order_order { max-width: 290px; }
+/* .btn_order_order_s { max-width: 230px; } */
+
+/** 주문 취소 완료 페이지 계좌환불시 부가설명 추가 */
+.orderpage h3 {text-align: center; font-size: 1.5em; font-weight: 400}
+
+/** 마이페이지 주문목록 a태그 컬러 초기화 */
+.order_item a, .order_item a:link {color:#000000}
+
+/** 마이페이지 리뷰쓰기 버튼 CSS 빠진것 추가 및 모바일, 웹 구분 visible처리 */
+.btn_orderinfo_review {
+  padding: 5px 5px;
+  margin:0 auto;
+  width: 124px;
+  height: 32px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff !important;
+  font-size: 12px;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn_orderinfo_review_mobile {display: none}
+@media screen and (max-width: 768px) {
+  .btn_orderinfo_review {display: none}
+  .btn_orderinfo_review_mobile {
+    padding: 5px 5px;
+    margin:0 0 10px 0;
+    width:115px;
+    height: 32px;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid #000000;
+    background: #000000;
+    color: #ffffff !important;
+    font-size: 11px;
+    display: inline-block;
+    cursor: pointer;
+    right: 0;
+    position: relative;
+  }
+}
+
+/** 마이페이지 개선사항 반영 */
+.mypage_order_item_wrap h2 {font-weight: 200; font-size: 1.8em; border-bottom: 1px solid #000; padding-bottom: 16px; margin-top:50px}
+.mypage_order_item_wrap h2 span:first-child {border-right: solid 1px #000000; margin: 0 10px; padding-top: 16px; font-size: 0; line-height: 0;}
+.btn_showdetailorder {float: right; color:#000000; font-size: 1em; font-weight: 300; }
+.order_detail_arrow { width: 12px }
+.order_item dl dt:first-child { padding: 20px 10px }
+.order_item dl dt:nth-child(3), .order_item dl dt:nth-child(4) { font-weight: 400; font-size: 1.2em; }
+.order_item dd:first-child img { width: 120px;}
+.order_item .itemname {font-weight: 400; font-size: 1.2em; }
+.order_item dl dd:nth-child(3) {font-size: 1.3em; font-weight: 500}
+.order_item .status_name { display: inline-block; color: #000000 }
+.order_item .status_name_mobile { display: none; color: #000000; float: right; margin-top: 50px; }
+@media screen and (max-width: 768px) {
+  .mypage_order_item_wrap h2 {font-weight: normal; font-size: 1.2em;}
+  .btn_showdetailorder {float: right; color:#000000; font-size: 1em; font-weight: 300; }
+  .order_detail_arrow { width: 6px }
+  .order_item dl dt:first-child { padding: 10px }
+  .order_item dd:first-child img { width: 100%;}
+  .order_item dl dd:nth-child(3) {font-size: 1em}
+  .order_item .status_name { display: none }
+  .order_item .status_name_mobile { display: inline-block; }
+}
+
+
+/** 장바구니 링크 컬러 초기화 */
+.cart_item a, .cart_item a:link {color:#000000}
+
+/** 장바구니 상품 이미지, 폰트 사이즈 수정 */
+.cart_item {margin-bottom: 0}
+.cart_item dl dt:nth-child(2) {font-size: 26px; padding: 20px 0;}
+.cart_item dl dt:nth-child(4) {font-size: 22px}
+.cart_item dl dt:nth-child(5) {font-size: 22px}
+.cart_item dl dd:nth-child(5) {font-size: 26px; font-weight: bold;}
+.cart_item .itemname { font-size: 24px; font-weight: normal; }
+.cart_item dl dd:nth-child(2) {width : 15%; padding: 20px 0;}
+.cart_item dd:nth-child(2) img {width: 100%; max-width: 120px}
+.order_totalpay {padding: 20px 0}
+.order_totalpay .large {font-size: 26px; font-weight: bold;}
+.refund_deliver_notice { text-align: left !important; }
+@media screen and (max-width: 768px) {
+  .cart_item dl dt:nth-child(2) {font-size: 13px}
+  .cart_item dl dt:nth-child(4) {font-size: 11px}
+  .cart_item dl dt:nth-child(5) {font-size: 11px}
+  .cart_item dl dd:nth-child(5) {font-size: 13px; font-weight: bold;}
+  .cart_item .itemname { font-size: 1em; font-weight: normal; }
+  .cart_item .cart_porduct_option_name { font-size: 12px; margin-top: 6px; }
+  .cart_item dl dd:nth-child(2) {width : 25%; float: left; padding: 10px 0 0 0 ;}
+  .cart_item dd:nth-child(2) img {width: 100%; max-width: 60px}
+  .order_totalpay {padding: 10px 0}
+  .order_totalpay .large {font-size: 13px; font-weight: bold;}
+}
+
+
+/** 장바구니 상품 항목 삭제 버튼 */
+.btn_cart_del { cursor: pointer; border: 1px solid #000000; display: inline-block !important; line-height: 0; vertical-align: bottom; padding: 5px;}
+.btn_cart_del img { width: 20px; }
+@media screen and (max-width:768px) {
+  .btn_cart_del img { width: 10px; }
+  /** 모바일에서 위치 변경 */
+  .btn_cart_del { position: absolute; top: 10px; right: 10px; }
+  .cartItemProduct { position: relative; }
+}
+
+/** 장바구니 카트 상품 옵션명 */
+.cart_porduct_option_name {display: inline-block}
+@media screen and (max-width:768px) {
+    .cart_porduct_option_name {display: block !important;}
+}
+
+/** 장바구니 모바일화면 체크박스 살리기 */
+/** 장바구니 수량 변경 모바일에서 padding 추가 */
+@media screen and (max-width:768px) {
+  .cart_item dl dd:first-child {width : 5%; display: inline-block; float: left; margin: 7px 15px 0 0;}
+  .cart_item dl dd:nth-child(3) {width : 50%; float: left}
+  .cart_item dl dd:nth-child(4) { padding-left: 40px }
+}
+
+/** 마이페이지 Q&A h2와 함께 쓰기위한 padding-top조정 */
+.qna_filter {padding: 0; float: right;}
+
+/** 마이페이지 포인트 text 글자크기 조정 */
+.point_text { font-size: 0.9em }
+@media screen and (max-width:768px) {
+    .point_text { font-size: 11px }
+}
+
+/** 마이페이지 포인트 금액 우측정렬 */
+.point_list dd.point_item { font-size: 1.1em; text-align: right; padding-right: 70px; vertical-align: middle;}
+@media screen and (max-width: 1000px) {
+  .point_list dl dd:nth-child(3) { width: 19%; }
+  .point_list dd.point_item { padding-right: 0; }
+}
+
+/** 취소/환불내역 보기 부분 - 모바일에서 너무 심하게 깨져서 수정 */
+.order_cancel_info dt {width: 50%; font-weight: 700}
+.order_cancel_info dd {width: 50%; text-align: right}
+
+/** 주문 상세정보 취소/환불내열 보이기용 CSS */
+.showCancelRefundInfo {display: block}
+
+/** 로그인 SNS로그인 오류 메시지 */
+.snsMessage { margin-top: 10px; }
+
+/** dl dt dd colspan 처리 */
+.order_totalpay .colspan { width: 100%; }
+
+/** 상품상세 > 쿠폰다운로드 */
+.detail_couponbtn a.default { background: #000; padding: 5px 15px; }
+.detail_couponbtn a.default:hover { background: #000 /*url(../images/bg_coupombtn_2.png)  no-repeat right center*/; }
+.detail_couponbtn a.default.arrow { padding: 5px 25px 5px 6px; border-left: solid 1px #fff; position: relative; }
+.detail_couponbtn a.default.arrow > img { position: absolute; top: 5px; right: 5px; }
+
+/** 환뷸요청 버튼 */
+.btn_order_order, .btn_orderinfo_1, .btn_orderinfo_3 { cursor: pointer; }
+
+/** 주문취소페이지 */
+.orderpage h2 > span { font-size: 14px; float:none; }
+.orderpage h2 > span.checkout { font-size: 0.7em; float:right; }
+.mypage_iconbox_withdrawal {display: none};
+/* @media screen and (min-width: 776px) {
+
+} */
+@media screen and (min-width: 768px) {
+  .mypage_iconbox_withdrawal {display: block;}
+  .orderpage h2 > span { font-size: 12px; }
+}
+.bank_select { height: 43px; }
+
+/** 주문서작성 페이지 */
+.orderpage h2 {margin-bottom: 0px}
+.orderpage input[type=tel] { padding: 13px; background: #f5f5f5; color: #8d8d8d; border: none; font-size: 0.9em; margin:3px 0; }
+.order_delivery dd {line-height: 48px}
+.price_sum {padding: 20px 30px 20px 10px}
+
+.order_paymethod input[type=radio] + label:before {bottom: -4px}
+.order_paymethod input[type=radio] + label {padding-left: 30px; margin-right: 20px}
+.order_paymethod input[type=radio] + label   em.sub-txt {color: #9e9e9e;font-size:12px;font-style:normal;}
+
+input[type=checkbox]#order_delivery_chk + label:before {
+  top: 3px;
+  background-color: #ffffff;
+  box-shadow: none;
+}
+input[type=checkbox]#order_delivery_chk:checked + label:before {
+  text-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+  .price_sum {padding: 10px 10px 20px 0px}
+  .order_paymethod input[type=radio] + label:before {bottom: 1px}
+  .order_paymethod input[type=radio] + label {padding-left: 20px; margin-right: 10px; width: 45%; }
+  .order_paymethod input[type=radio] + label   em.sub-txt {font-size:10px;}
+  input[type=checkbox]#order_delivery_chk + label:before { left: 11px; top: 0; }
+}
+
+/** 주문서완료 페이지 */
+.orderpage .order_chk_img img {width: 100px}
+.orderpage .order_chk_txt {margin-bottom: 10px}
+
+/** 상품목록 체크박스 필터 */
+.list_chk .lbl {margin-right: 5px}
+@media screen and (max-width: 768px) {
+  .subcategory_list_chk { float: right }
+}
+
+/** 로그인 페이지 */
+.login.pagetitle > h1 { font-size: 34px; font-weight: bold; margin: 0;  margin-top: 20px; }
+.login.pagetitle > h2 { font-size: 32px; font-weight: 100; margin:0; }
+
+@media screen and (max-width: 768px) {
+  .login.pagetitle > h1 { font-size: 29px; }
+  .login.pagetitle > h2 { font-size: 29px; }
+}
+
+/** 페이지 타이틀  */
+.pagetitle { padding-bottom: 0; }
+.login_container { padding-top: 0; }
+
+/** 브랜드관 */
+.brand-tag-title .type2 { margin-bottom: 15px }
+.brand-tag-title span { padding: 3px 0; font-size: 18px; line-height: 2.2; color: #ffffff; background-color: #bbb; box-shadow: 0.7em 0 0 #bbb, -0.7em 0 0 #bbb; }
+@media screen and (max-width: 768px) {
+  .brand-tag-title span { font-size: 13px;}
+}
+
+/** 아이디 찾기 문구 */
+.findid_txtbox { letter-spacing: -1px; }
+.findid_txtbox > h2 { letter-spacing: 0; }
+
+/** 비회원 주문/배송조회 문구 */
+.order_no_mem_txtbox { letter-spacing: -1px; }
+.order_no_mem_txtbox > h2 { letter-spacing: 0; }
+.order_no_mem_txtbox {
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  padding: 15px 0px;
+  margin: 40px 0px 20px 0px;
+  color: #4c4c4c;
+  font-size: 0.95em;
+}
+.order_no_mem_btn {
+  background: #000000;
+  border: 0px;
+  width: 100%;
+  max-width: 250px;
+  padding: 10px;
+  margin: 30px auto 2px auto;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  border: 1px solid #000000;
+}
+.order_no_mem_input {
+  background: #ffffff;
+  border: 1px solid #bdbdbd;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0px;
+  height: 40px;
+}
+
+.mypage-order-nomember dd > div {
+  line-height: 20px !important;
+  margin-top: 10px;
+  font-size: 12px;
+}
+/** 로그인 관련 페이지 */
+.login_container .txt { height: 60px; line-height: 20px; }
+
+/** 앵커 호버 색상 제거 */
+.findid_btn:hover { background: #000; border: solid 1px #000; }
+.detail_couponbtn a:hover {background-color: #000; }
+.btn_order_order:hover {background:#000; }
+.btn_orderinfo_3:hover {background: #000; border-color: #000; }
+.btn_orderinfo_cancel a:hover {background: #000; }
+.login_btn:hover {background: #000; border:1px solid #000; }
+.login_container .join_btn:hover {background: #fff; border:1px solid #000; color: #000; }
+.login_find a:hover {color: #666; }
+.btns_findid_a:hover { background:#000000; border:1px solid #000000; }
+.btns_findid_b:hover { background:#ffffff; border:1px solid #000000; color: #000; }
+.btns_findid_c:hover { background:#a1a1a1; border:1px solid #a1a1a1; }
+
+/** 주문서 작성 결제종류 */
+.order_paymethod { padding: 15px 15px 16px 15px; }
+
+/** 라디오 */
+input[type=radio] + label{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 13px;
+}
+
+input[type=radio]+ label:before {
+    content: "";
+    background: url('../images/login_icon_radiobtn_n.png') round;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #fff;
+    box-shadow: none;
+    border-radius: 0;
+    font-size: 40px;
+    font-weight:normal;
+    text-align: center;
+    line-height: inherit;
+    color:#fff;
+}
+input[type=radio]:checked + label:before {
+    content: "";  /* 체크모양 */
+    background: url('../images/login_icon_radiobtn_s.png') round;
+    text-shadow: none;
+    color: #fff;
+}
+@media screen and (max-width: 768px) {
+  input[type=radio] + label {
+    margin-bottom: 10px;
+    padding-left: 30px !important;
+  }
+  input[type=radio] + label:before {
+    bottom: -4px !important;
+  }
+}
+
+/** 체크박스 */
+input[type=checkbox] + label{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 35px;
+    font-size: 1em;
+}
+@media screen and (max-width: 768px) {
+  input[type=checkbox] + label {
+    padding-left: 28px;
+  }
+}
+
+input[type=checkbox]+ label:before {
+    content: "";
+    background: url('../images/login_btn_checkbox_n.png') round;
+    background-color: #fff;
+    bottom: -2px;
+    border-radius: 0;
+    box-shadow: none;
+}
+input[type=checkbox]:checked + label:before {
+    content: "";  /* 체크모양 */
+    background: url('../images/login_btn_checkbox_s.png') round;
+    text-shadow: none;
+    color: #fff;
+}
+@media screen and (max-width:768px) {
+  input[type=checkbox]:checked + label:before {
+    border: 1px solid #121212;
+  }
+  input[type=checkbox] + label:before {
+    bottom: -1px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  input[type=checkbox].join-term-checkbox + label:before {
+    background: url('../images/f-market-icon-checkbox-m-n.png') round;
+    width: 20px;
+    height: 20px;
+  }
+  input[type=checkbox].join-term-checkbox:checked + label:before {
+    background: url('../images/f-market-icon-checkbox-m-s.png') round;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  input[type=checkbox].join-term-checkbox + label:before {
+    background: url('../images/f-market-icon-checkbox-m-n.png') round;
+    width: 20px;
+    height: 20px;
+  }
+  input[type=checkbox].join-term-checkbox:checked + label:before {
+    background: url('../images/f-market-icon-checkbox-m-s.png') round;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+.login_container input[type=radio] + label:before { bottom: -4px; }
+
+/** jQuery 셀렉트박스 */
+.ui-menu .ui-menu-item-wrapper { padding: 15px 13px !important; }
+
+/** 아이디/비밀번호 찾기 인증 버튼 */
+.findid_id_input, .findid_hp_input, .findid_id_input_2, .findid_id_input_3 {
+  border: 1px solid #e1e1e1;
+}
+.findid_hp_input {
+  width: calc(100% - 64px);
+  margin-right: 3px;
+}
+.findid_hp_img {
+  vertical-align: top;
+  height: 39px;
+  margin-top: 5px;
+}
+.login_container > [type='text'], .login_container > [type='tel'], .login_container > [type='password'], .login_container > [type='email'] { font-size: 14px; }
+
+/** 상단 바로가기 때문에 z-index 설정 */
+#app > div > div.frame { position: relative; z-index: 2; }
+.zindex2 { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; }
+
+/** 서비스 이용약관, 개인정보 취급방침 **/
+.login_container .term { overflow: scroll; width: 100%; height: 200px; background-color: #eeeeee; padding: 15px; font-size: 12px; border: 1px solid #ddd; }
+.order_paymethod .term { overflow: scroll; width: 100%; height: 100px; background-color: #f5f5f5; padding: 13px; font-size: .9em; color: #8d8d8d; margin: 3px 0; }
+
+/** 페이지별 팝업 */
+.pageLayerPopup {
+  position: absolute;
+  top: 2vh;
+  left: 2vh;
+  z-index: 99999;
+  width: 600px;
+  height: 600px;
+  border: solid 1px #666;
+  display: inline-flex;
+}
+.pageLayerPopup img { width: 100%; }
+.pageLayerPopup a { background: #000; margin-top: -1px; color:#fff; padding: 7px 10px; display: inline-block; }
+@media screen and (max-width: 768px) {
+  .pageLayerPopup { width: 300px; height: 300px; display: block; }
+  .pageLayerPopup > div { text-align: left; }
+}
+
+textarea { resize: none; }
+/** 로그인 인풋박스 */
+.login_input {
+  height: 50px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+/** 네이버페이 구매하기 */
+#btn_n_buy.m { display: none; }
+#btn_n_buy { width: calc( 33% - 20px ); background: #00c73c }
+#btn_n_buy > img { vertical-align: middle; width: 52px; }
+@media screen and (max-width: 890px) {
+  #btn_n_buy { display: none; }
+  #btn_n_buy.m { display: block; }
+}
+/** 본인인증 */
+.order_delivery dd > div { line-height: 20px !important; margin-top: 10px; }
+.order_delivery dd span { font-size: 13px; }
+#certification_code { min-width: 160px; max-width: 270px; }
+.w28per {width: 28%;}
+@media screen and (max-width: 768px) {
+  .order_paymethod h4 { letter-spacing: -1px; font-size: 13px; }
+}
+/** 에스크로 안내문구 박스 */
+.escrow-info-box { margin-top:-45px; margin-bottom: 50px; padding:5px 15px; background: #f7f7f7; border: solid 1px #ddd; }
+.escrow-info-box > p { margin: 10px 0; }
+
+
+/** 리뷰 2차 */
+.orderpage .review_write_wrap h3 {
+  text-align: left;
+  font-size: initial;
+  font-weight: bold;
+}
+
+/** 비회원 마이페이지 > 고객센터 */
+.mypage_iconbox li { position: relative; }
+.service_list ul li { padding: 22px 0; border-bottom: solid 1px #bdbdbd; }
+.service_list ul li strong { font-size: 17px; margin-left: 30px; margin-right: 50px; font-weight: 500; }
+.service_list ul li span { font-size: 14px; font-weight: 300; }
+.service_list ul li span a {
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid #4c4c4c;
+  display: inline-block;
+  padding: 5px 8px;
+  line-height: 20px;
+  background-color: #4c4c4c;
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: -1px;
+}
+.service_list ul li div { display: inline-block; }
+.service_list ul li div.title_vertical { vertical-align: super; }
+
+/** 비회원 마이페이지 > 회원가입 */
+.no-member-mypage-menu-0 {
+  position: absolute;
+  width: 100%;
+  top: 41px;
+  text-align: center;
+  z-index: 9;
+}
+.no-member-mypage-menu-0 div {
+  position: absolute;
+  width: 78px;
+  height: 32px;
+  line-height: 25px;
+  color: #fff;
+  display: inline-block;
+  margin-left: 46px;
+  right: 40px;
+}
+.no-member-mypage-menu-0 div img { opacity: 1.0; }
+/** 비회원 주문시 인증번호 확인 버튼 활성화 상태 */
+.disabled_true { padding: 13px 35px; background: #bdbdbd; }
+.disabled_false { padding: 13px 35px; }
+
+/** 상품상세 > 옵션박스 높이 조절 */
+.ui-selectmenu-menu > ul {
+  max-height: 300px;
+}

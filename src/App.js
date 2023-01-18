@@ -4,6 +4,7 @@ import "./App.css";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import data from "./data.js";
 import Detail from "./routes/Detail.js";
+import Cart from "./routes/Cart.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 
@@ -85,6 +86,7 @@ function App(props) {
           }
         />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

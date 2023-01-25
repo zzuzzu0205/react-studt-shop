@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
-import { useParams } from "react-router-dom";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../store";
+import Cart from "./Cart.js";
+
 import "../App.css";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
@@ -12,6 +16,9 @@ let YellowBtn = styled.button`
   padding: 10px;
 `;
 function Detail(props) {
+  let state = useSelector((state) => state);
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
   let [fade1, setFade1] = useState("");
   useEffect(() => {
     setFade1("end");
@@ -75,9 +82,29 @@ function Detail(props) {
             <h4 className="pt-5">{serach_id.title}</h4>
             <p>{serach_id.content}</p>
             <p>{serach_id.price}</p>
-            <button className="btn btn-danger">주문하기</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                dispatch(
+                  addCart({
+                    id: serach_id.id,
+                    name: serach_id.title,
+                    count: 1,
+                  })
+                );
+              }}
+            >
+              주문하기
+            </button>
           </div>
         </div>
+        <Nav.Link
+          onClick={() => {
+            navigate("/cart");
+          }}
+        >
+          장바구니 가기
+        </Nav.Link>
         <Nav variant="tabs" defaultActiveKey="link0">
           <Nav.Item>
             <Nav.Link
@@ -110,6 +137,10 @@ function Detail(props) {
             </Nav.Link>
           </Nav.Item>
         </Nav>
+
+        <Routes>
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
 
         <TabContent 탭={탭} shoes={props.shoes}></TabContent>
       </div>

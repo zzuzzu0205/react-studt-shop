@@ -10,7 +10,8 @@ import axios from "axios";
 
 function App(props) {
   useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify([]));
+    let recent_view = localStorage.setItem("watched", JSON.stringify([]));
+    console.log(recent_view);
   }, []);
 
   let [shoes, setShoes] = useState(data);

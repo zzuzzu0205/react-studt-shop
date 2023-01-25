@@ -4,13 +4,21 @@ import user from "./store/userSlice.js";
 let cart = createSlice({
   name: "cart",
   initialState: [
-    { id: 0, name: "White and Black", count: 2 },
-    { id: 2, name: "Grey Yordan", count: 1 },
+    { id: 0, name: "black and white", count: 2 },
+    { id: 2, name: "runner", count: 1 },
   ],
   reducers: {
-    changeStock(state, action) {
+    addItem(state, action) {
       let findSameId = state.findIndex((a) => a.id == action.payload);
       state[findSameId].count++;
+    },
+    removeItem(state, action) {
+      let findSameId = state.findIndex((a) => a.id == action.payload);
+      state[findSameId].count--;
+    },
+    delItem(state, action) {
+      let findSameId = state.findIndex((a) => a.id == action.payload);
+      state.splice(findSameId, 1);
     },
     addCart(state, action) {
       state.push(action.payload);
@@ -18,7 +26,7 @@ let cart = createSlice({
   },
 });
 
-export let { changeStock, addCart } = cart.actions;
+export let { addItem, addCart, removeItem, delItem } = cart.actions;
 export default configureStore({
   reducer: {
     user: user.reducer,

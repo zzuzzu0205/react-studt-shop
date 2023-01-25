@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../store";
+import { addItem, addCart } from "../store";
 import Cart from "./Cart.js";
 
 import "../App.css";
@@ -19,6 +19,7 @@ function Detail(props) {
   let state = useSelector((state) => state);
   let navigate = useNavigate();
   let dispatch = useDispatch();
+  console.log(state.cart);
   let [fade1, setFade1] = useState("");
   useEffect(() => {
     setFade1("end");
@@ -85,13 +86,18 @@ function Detail(props) {
             <button
               className="btn btn-danger"
               onClick={() => {
-                dispatch(
-                  addCart({
-                    id: serach_id.id,
-                    name: serach_id.title,
-                    count: 1,
-                  })
+                let confirmItm = state.cart.findIndex(
+                  (a) => a.id == serach_id.id
                 );
+                confirmItm == -1
+                  ? dispatch(
+                      addCart({
+                        id: serach_id.id,
+                        name: serach_id.title,
+                        count: 1,
+                      })
+                    )
+                  : dispatch(addItem(serach_id.id));
               }}
             >
               주문하기

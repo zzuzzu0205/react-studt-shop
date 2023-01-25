@@ -9,6 +9,10 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 
 function App(props) {
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify([]));
+  }, []);
+
   let [shoes, setShoes] = useState(data);
   let [btn, setBtn] = useState(2);
   let [btnState, setBtnState] = useState(true);

@@ -12,7 +12,6 @@ function App(props) {
   useEffect(() => {
     localStorage.setItem("watched", JSON.stringify([]));
   }, []);
-  localStorage.setItem("watched", JSON.stringify([]));
   let [shoes, setShoes] = useState(data);
   let [btn, setBtn] = useState(2);
   let [btnState, setBtnState] = useState(true);
@@ -99,18 +98,14 @@ function Item(props) {
   let navigate = useNavigate();
   return (
     <div className="item">
-      <Nav.Link
+      {" "}
+      <img
         onClick={() => {
-          navigate("/detail/" + props.i);
+          navigate("/detail/" + (props.i - 1));
         }}
-      >
-        {" "}
-        <img
-          src={"https://codingapple1.github.io/shop/shoes" + props.i + ".jpg"}
-          width="80%"
-        />
-      </Nav.Link>
-
+        src={"https://codingapple1.github.io/shop/shoes" + props.i + ".jpg"}
+        width="80%"
+      />
       <h4>{props.shoes.title}</h4>
       <p>{props.shoes.price}</p>
       <p>{props.shoes.content}</p>

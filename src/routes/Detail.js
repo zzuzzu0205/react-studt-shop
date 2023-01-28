@@ -54,10 +54,13 @@ function Detail(props) {
     let recentView = localStorage.getItem("watched");
     recentView = JSON.parse(recentView);
     recentView.push(serach_id.id);
-
+    recentView = new Set(recentView);
+    recentView = [...recentView];
     localStorage.setItem("watched", JSON.stringify(recentView));
+
     console.log(recentView);
   }, []);
+
   return (
     <div className={"start " + fade1}>
       <div className="container">
@@ -77,7 +80,11 @@ function Detail(props) {
         <div className="row">
           <div className="col-md-6">
             <img
-              src="http://codingapple1.github.io/shop/shoes1.jpg"
+              src={
+                "http://codingapple1.github.io/shop/shoes" +
+                (serach_id.id + 1) +
+                ".jpg"
+              }
               width="100%"
             />
           </div>

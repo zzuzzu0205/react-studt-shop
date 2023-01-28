@@ -9,6 +9,7 @@ import "../App.css";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import styled from "styled-components";
+import { setAutoFreeze } from "immer";
 
 let YellowBtn = styled.button`
   background: ${(props) => props.bg};
@@ -19,7 +20,6 @@ function Detail(props) {
   let state = useSelector((state) => state);
   let navigate = useNavigate();
   let dispatch = useDispatch();
-  console.log(state.cart);
   let [fade1, setFade1] = useState("");
   useEffect(() => {
     setFade1("end");
@@ -50,6 +50,14 @@ function Detail(props) {
     return x.id == id;
   });
 
+  useEffect(() => {
+    let recentView = localStorage.getItem("watched");
+    recentView = JSON.parse(recentView);
+    recentView.push(serach_id.id);
+
+    localStorage.setItem("watched", JSON.stringify(recentView));
+    console.log(recentView);
+  }, []);
   return (
     <div className={"start " + fade1}>
       <div className="container">

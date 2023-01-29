@@ -9,9 +9,10 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 
 function App(props) {
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify([]));
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem("watched", JSON.stringify([]));
+  // }, []);  다시 만들어주는 코드를 안해주면 새로고침해도 안없어짐
+
   let [shoes, setShoes] = useState(data);
   let [btn, setBtn] = useState(2);
   let [btnState, setBtnState] = useState(true);

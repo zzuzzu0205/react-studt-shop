@@ -52,8 +52,13 @@ function Detail(props) {
 
   useEffect(() => {
     let recentView = localStorage.getItem("watched");
-    recentView = JSON.parse(recentView);
-    recentView.push(serach_id.id);
+    if (recentView == null) {
+      recentView = [];
+    } else {
+      recentView = JSON.parse(recentView);
+    }
+
+    recentView.unshift(serach_id.id);
     recentView = new Set(recentView);
     recentView = [...recentView];
     localStorage.setItem("watched", JSON.stringify(recentView));

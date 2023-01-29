@@ -7,6 +7,7 @@ import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
+import { useQuery } from "react-query";
 
 function App(props) {
   // useEffect(() => {
@@ -17,6 +18,12 @@ function App(props) {
   let [btn, setBtn] = useState(2);
   let [btnState, setBtnState] = useState(true);
   let navigate = useNavigate();
+
+  let result = useQuery("작명", () =>
+    axios.get("https://codingapple1.github.io/userdata.json").then((a) => {
+      return a.data;
+    })
+  );
 
   return (
     <div className="App">
@@ -39,6 +46,11 @@ function App(props) {
               Detail
             </Nav.Link>
             <Nav.Link href="#pricing">마이페이지</Nav.Link>
+            <Nav className="ms-auto">
+              {result.error && "에러남"}
+              {result.isLoading && "로딩중"}
+              {result.data && result.data.name}
+            </Nav>
           </Nav>
         </Container>
       </Navbar>

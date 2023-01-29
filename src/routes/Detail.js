@@ -62,9 +62,11 @@ function Detail(props) {
     recentView = new Set(recentView);
     recentView = [...recentView];
     localStorage.setItem("watched", JSON.stringify(recentView));
-
     console.log(recentView);
   }, []);
+
+  let recentView = localStorage.getItem("watched");
+  recentView = JSON.parse(recentView);
 
   return (
     <div className={"start " + fade1}>
@@ -98,6 +100,29 @@ function Detail(props) {
               수량입력(e.target.value);
             }}
           />
+          <div className="watchedItm">
+            <p className="recentName">최근 본 상품</p>
+            <div className="recentItm">
+              {recentView &&
+                recentView.map(function (a, i) {
+                  return (
+                    <>
+                      <img
+                        onClick={() => {
+                          navigate("/detail/" + a);
+                        }}
+                        src={
+                          "http://codingapple1.github.io/shop/shoes" +
+                          (a + 1) +
+                          ".jpg"
+                        }
+                        width="100%"
+                      ></img>
+                    </>
+                  );
+                })}
+            </div>
+          </div>
           수량 입력란
           <div className="col-md-6">
             <h4 className="pt-5">{serach_id.title}</h4>
@@ -191,4 +216,5 @@ function TabContent({ 탭, shoes }) {
     </div>
   );
 }
+
 export default Detail;

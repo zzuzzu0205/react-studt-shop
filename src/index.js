@@ -15,7 +15,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <QueryClientProvider client={queryClient}>
     {" "}
-    //3번
     <Provider store={store}>
       <BrowserRouter>
         <App />

@@ -1,13 +1,17 @@
 import logo from "./logo.svg";
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./App.css";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import data from "./data.js";
-import Detail from "./routes/Detail.js";
-import Cart from "./routes/Cart.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "react-query";
+
+// import Detail from "./routes/Detail.js";
+// import Cart from "./routes/Cart.js";
+
+const Detail = lazy(() => import("./routes/Detail.js"));
+const Cart = lazy(() => import("./routes/Cart.js"));
 
 function App(props) {
   // useEffect(() => {
@@ -54,56 +58,57 @@ function App(props) {
           </Nav>
         </Container>
       </Navbar>
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <div className="main_bg"></div>
-              <div className="container">
-                <div className="row">
-                  {shoes.map(function (a, i) {
-                    return (
-                      <div className="col-md-4">
-                        <Item shoes={shoes[i]} i={i + 1}></Item>
-                      </div>
-                    );
-                  })}
+      <Suspense fallback={<div>로딩중임..</div>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="main_bg"></div>
+                <div className="container">
+                  <div className="row">
+                    {shoes.map(function (a, i) {
+                      return (
+                        <div className="col-md-4">
+                          <Item shoes={shoes[i]} i={i + 1}></Item>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-              {btnState == true ? (
-                <button
-                  onClick={() => {
-                    axios
-                      .get(
-                        "https://codingapple1.github.io/shop/data" +
-                          btn +
-                          ".json"
-                      )
-                      .then((result) => {
-                        let copy = [...shoes, ...result.data];
-                        setShoes(copy);
-                        setBtn(btn + 1);
+                {btnState == true ? (
+                  <button
+                    onClick={() => {
+                      axios
+                        .get(
+                          "https://codingapple1.github.io/shop/data" +
+                            btn +
+                            ".json"
+                        )
+                        .then((result) => {
+                          let copy = [...shoes, ...result.data];
+                          setShoes(copy);
+                          setBtn(btn + 1);
 
-                        if (btn == 3) {
-                          setBtnState(false);
-                        }
-                      })
-                      .catch(() => {
-                        console.log("실패");
-                      });
-                  }}
-                >
-                  더보기
-                </button>
-              ) : null}
-            </>
-          }
-        />
-        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+                          if (btn == 3) {
+                            setBtnState(false);
+                          }
+                        })
+                        .catch(() => {
+                          console.log("실패");
+                        });
+                    }}
+                  >
+                    더보기
+                  </button>
+                ) : null}
+              </>
+            }
+          />
+          <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

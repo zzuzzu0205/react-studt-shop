@@ -1,5 +1,11 @@
 import logo from "./logo.svg";
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import "./App.css";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import data from "./data.js";
@@ -14,9 +20,9 @@ const Detail = lazy(() => import("./routes/Detail.js"));
 const Cart = lazy(() => import("./routes/Cart.js"));
 
 function App(props) {
-  // useEffect(() => {
-  //   localStorage.setItem("watched", JSON.stringify([]));
-  // }, []);
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify([]));
+  }, []);
 
   let [shoes, setShoes] = useState(data);
   let [btn, setBtn] = useState(2);
@@ -29,8 +35,25 @@ function App(props) {
     })
   );
 
+  let a = new Array(10000).fill(0);
+  let [name, setName] = useState("");
+  let [isPending, startTransition] = useTransition();
   return (
     <div className="App">
+      <input
+        onChange={(e) => {
+          startTransition(() => {
+            setName(e.target.value);
+          });
+        }}
+      ></input>
+
+      {isPending
+        ? "로딩중"
+        : a.map(() => {
+            return <div>{name}</div>;
+          })}
+
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand className="Navbar_name">HIVER</Navbar.Brand>

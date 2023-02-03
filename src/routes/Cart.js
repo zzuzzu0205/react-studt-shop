@@ -1,29 +1,15 @@
 import { Table } from "react-bootstrap";
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState, memo, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName, increase } from "./../store/userSlice.js";
 import { addItem, removeItem, delItem } from "../store.js";
 
-let Child = memo(function () {
-  console.log("재랜더링됨");
-  return <div>자식임</div>;
-});
-
 function Cart() {
   let state = useSelector((state) => state);
   let dispatch = useDispatch();
-  let [count, setCount] = useState(0);
 
   return (
     <div>
-      <Child count={count}></Child>
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        +
-      </button>
       <button
         onClick={() => {
           dispatch(increase(100));

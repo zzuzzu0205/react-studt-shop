@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
   useTransition,
+  useDeferredValue,
 } from "react";
 import "./App.css";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
@@ -38,6 +39,8 @@ function App(props) {
   let a = new Array(10000).fill(0);
   let [name, setName] = useState("");
   let [isPending, startTransition] = useTransition();
+  let state = useDeferredValue(name);
+
   return (
     <div className="App">
       <input
@@ -51,7 +54,7 @@ function App(props) {
       {isPending
         ? "로딩중"
         : a.map(() => {
-            return <div>{name}</div>;
+            return <div>{state}</div>;
           })}
 
       <Navbar bg="dark" variant="dark">
